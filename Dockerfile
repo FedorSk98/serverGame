@@ -8,6 +8,8 @@ WORKDIR /go/src/app
 COPY . .
 
 # Собираем Go приложение
+RUN go get github.com/gorilla/websocket
+RUN go get golang.org/x/net
 RUN go build -o main .
 
 # Указываем команду для запуска приложения при старте контейнера

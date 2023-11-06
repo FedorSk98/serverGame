@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -13,6 +14,7 @@ var upgrader = websocket.Upgrader{CheckOrigin: func(r *http.Request) bool { retu
 func main() {
 	// Настройка маршрута WebSocket
 	http.HandleFunc("/ws", handleConnections)
+	http.HandleFunc("/hello", hello)
 
 	// Запуск обработки сообщений
 	go handleMessages()
@@ -22,6 +24,10 @@ func main() {
 	if err != nil {
 		log.Fatal("Ошибка запуска сервера:", err)
 	}
+}
+
+func hello(w http.ResponseWriter, req *http.Request) {
+	fmt.Fprint(w, "<h1>hello</h1>")
 }
 
 func handleConnections(w http.ResponseWriter, r *http.Request) {

@@ -18,7 +18,7 @@ func main() {
 	go handleMessages()
 
 	// Запуск сервера на порту 8080
-	err := http.ListenAndServe("0.0.0.0::8080", nil)
+	err := http.ListenAndServe("0.0.0.0:8080", nil)
 	if err != nil {
 		log.Fatal("Ошибка запуска сервера:", err)
 	}
